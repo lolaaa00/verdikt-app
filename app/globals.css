@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: #090909;
+  color: #FFFFFF;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #111111; }
+::-webkit-scrollbar-thumb { background: rgba(57,255,20,0.2); border-radius: 2px; }
+
+/* Card hover */
+.card-hover {
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  border-color: rgba(57,255,20,0.18) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(57,255,20,0.08);
+}
+
+/* Matrix resolution panel background */
+.matrix-bg {
+  position: relative;
+  overflow: hidden;
+}
+.matrix-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(57,255,20,0.025) 20px, rgba(57,255,20,0.025) 21px),
+    repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(57,255,20,0.015) 20px, rgba(57,255,20,0.015) 21px);
+  pointer-events: none;
+  z-index: 0;
+}
+.matrix-bg > * { position: relative; z-index: 1; }
+
+/* VERDIKT CONFIRMED badge */
+@keyframes confirmedGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(57,255,20,0.3); }
+  50% { box-shadow: 0 0 16px rgba(57,255,20,0.6); }
+}
+.verdikt-confirmed { animation: confirmedGlow 2.5s ease infinite; }
+
+/* Source appear animation */
+@keyframes sourceAppear {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.source-appear { animation: sourceAppear 0.35s ease forwards; }
+
+/* Verdict reveal */
+@keyframes verdictReveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.verdict-reveal { animation: verdictReveal 0.5s ease forwards; }
+
+@layer utilities {
+  .border-subtle { border-color: rgba(255,255,255,0.06); }
+  .border-default { border-color: rgba(255,255,255,0.08); }
+  .border-active { border-color: rgba(57,255,20,0.18); }
+  .text-main { color: #FFFFFF; }
+  .text-secondary { color: #B3B3B3; }
+  .text-muted-color { color: #7A7A7A; }
+}
